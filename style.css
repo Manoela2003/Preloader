@@ -28,7 +28,7 @@ h1 {
     background-size: 400%;
     -webkit-background-clip: text;
     -moz-background-clip: text;
-    -webkit-text-fill-color: transparent; 
+    -webkit-text-fill-color: transparent;
     -moz-text-fill-color: transparent;
     animation: gradient 10s infinite alternate;
 }
@@ -41,6 +41,7 @@ li {
 
 a {
     text-decoration: none;
+    position: relative;
 }
 
 a:focus {
@@ -69,6 +70,7 @@ a:focus {
     justify-content: center;
     background-color: white;
     animation: dissapear 1s 2.5s forwards;
+    z-index: 100;
 }
 
 img {
@@ -76,14 +78,33 @@ img {
     animation: scale-up 2.5s forwards;
 }
 
-@keyframes scale-up{
-    100%{
+@keyframes scale-up {
+    100% {
         transform: scale(0.25);
     }
 }
-@keyframes dissapear{
-    100%{
+
+@keyframes dissapear {
+    100% {
         opacity: 0;
         visibility: hidden;
     }
+}
+
+a::after {
+    content: "";
+    position: absolute;
+    background-color: rgba(96, 159, 238, 1);
+    left: 0;
+    bottom: 0;
+    height: 1.5px;
+    width: 100%;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform 0.25s;
+}
+
+a:hover::after{
+    transform: scaleX(1);
+    transform-origin: left;
 }
